@@ -3,96 +3,1355 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avenue Direct Marketing | GPS-Verified Door Hanger Campaigns</title>
+    <title>Avenue Direct Marketing | Coastal Bend Door Hangers</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Icons (FontAwesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- VARIABLES & RESET --- */
+        :root {
+            --primary: #005f99; /* Coastal Dark Blue */
+            --secondary: #00a8e8; /* Ocean Light Blue */
+            --accent: #f5a623; /* Sunset Orange/Gold for CTAs */
+            --dark: #333333;
+            --light: #f4f7f6;
+            --white: #ffffff;
+            --text-gray: #555555;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* --- UTILITIES --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(245, 166, 35, 0.4);
+        }
+
+        .btn-primary:hover {
+            background-color: #d48b15;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--white);
+            color: var(--white);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: var(--white);
+            color: var(--primary);
+        }
+
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .text-center { text-align: center; }
+        
+        .section-header {
+            margin-bottom: 60px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+        }
+
+        /* --- ANIMATIONS --- */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- HEADER / NAV --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 15px 0;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i { color: var(--accent); }
+
+        /* Dropdown Styles */
+        .nav-dropdown-container {
+            position: relative;
+        }
+
+        .menu-btn {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 8px 18px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+        }
+
+        .menu-btn:hover, .menu-btn.active {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .nav-dropdown-menu {
+            position: absolute;
+            top: 110%; /* Slight offset from button */
+            right: 0;
+            width: 260px;
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            padding: 10px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: var(--transition);
+            border: 1px solid #f0f0f0;
+        }
+
+        .nav-dropdown-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .nav-dropdown-menu a {
+            display: block;
+            padding: 12px 25px;
+            color: var(--dark);
+            font-weight: 600;
+            border-left: 3px solid transparent;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        .nav-dropdown-menu a:hover {
+            background: var(--light);
+            border-left-color: var(--accent);
+            color: var(--primary);
+        }
+
+        .nav-dropdown-menu .cta-item {
+            margin: 15px 20px 10px;
+            text-align: center;
+            padding: 0;
+            border: none;
+        }
+        
+        .nav-dropdown-menu .cta-item a {
+            background: var(--accent);
+            color: var(--white);
+            border-radius: 50px;
+            padding: 12px 20px;
+            text-align: center;
+            border: none;
+            display: block;
+            width: 100%;
+        }
+
+        .nav-dropdown-menu .cta-item a:hover {
+            background: #d48b15;
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* --- HERO --- */
+        .hero {
+            height: 100vh;
+            min-height: 600px;
+            background: linear-gradient(rgba(0, 20, 40, 0.7), rgba(0, 20, 40, 0.6)), 
+                        url('https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            padding-top: 60px; /* Offset for fixed header */
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            color: var(--white);
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: 25px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        /* --- WHY DOOR HANGERS --- */
+        .why-section {
+            background-color: var(--white);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .benefit-card {
+            background: var(--light);
+            padding: 40px 30px;
+            border-radius: 12px;
+            text-align: left;
+            transition: var(--transition);
+            border-bottom: 3px solid transparent;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-bottom: 3px solid var(--accent);
+        }
+
+        .icon-box {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .stat-highlight {
+            background: var(--primary);
+            color: var(--white);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 40px;
+            text-align: center;
+        }
+        
+        .stat-highlight p {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        /* --- WHAT WE DO (PROCESS) --- */
+        .process-section {
+            background-color: var(--light);
+        }
+
+        .process-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .step-row {
+            display: flex;
+            align-items: flex-start;
+            background: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step-number {
+            font-size: 4rem;
+            font-weight: 800;
+            color: rgba(0, 95, 153, 0.1);
+            line-height: 1;
+            margin-right: 30px;
+            min-width: 60px;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-content h3 {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .step-icon {
+            color: var(--accent);
+            font-size: 1.5rem;
+        }
+
+        /* --- GUARANTEE SECTION --- */
+        .guarantee-wrapper {
+            background: linear-gradient(135deg, #fffcf5 0%, #fff 100%);
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .guarantee-badge {
+            font-size: 3.5rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+        
+        .guarantee-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* --- TESTIMONIALS / PROOF --- */
+        .proof-section {
+            background: var(--white);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            border: 1px solid #eee;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            margin-top: 20px;
+            font-weight: 700;
+            font-style: normal;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .stars {
+            color: var(--accent);
+            font-size: 0.9rem;
+        }
+
+        /* --- PRICING SECTION --- */
+        .pricing-section {
+            background-color: var(--light);
+        }
+
+        .pricing-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-color: var(--secondary);
+        }
+
+        .pricing-card.popular {
+            border-color: var(--accent);
+            transform: scale(1.05);
+            z-index: 2;
+        }
+
+        .pricing-card.popular:hover {
+            transform: scale(1.08) translateY(-10px);
+        }
+
+        .badge {
+            background: var(--accent);
+            color: var(--white);
+            padding: 5px 30px;
+            position: absolute;
+            top: 20px;
+            right: -35px;
+            transform: rotate(45deg);
+            font-size: 0.8rem;
+            font-weight: 700;
+            width: 150px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .tier-name {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        .price-tag {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 5px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .price-per {
+            font-size: 1rem;
+            color: var(--text-gray);
+            margin-bottom: 25px;
+            display: block;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 30px;
+            text-align: left;
+            padding: 0 10px;
+            flex-grow: 1;
+        }
+
+        .pricing-features li {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+        }
+
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-features i {
+            color: var(--secondary);
+        }
+
+        /* --- CONTACT / CTA --- */
+        .contact-section {
+            background: linear-gradient(135deg, var(--primary) 0%, #004470 100%);
+            color: var(--white);
+        }
+        
+        .contact-section h2, .contact-section p {
+            color: var(--white);
+        }
+
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+        }
+
+        .contact-info, .contact-form-wrapper {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .contact-info ul {
+            margin-top: 30px;
+        }
+
+        .contact-info li {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .contact-info i {
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+
+        .map-frame {
+            width: 100%;
+            height: 250px;
+            border: 0;
+            border-radius: 8px;
+            margin-top: 30px;
+            filter: grayscale(20%);
+        }
+
+        .contact-form {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--dark);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 95, 153, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--accent);
+            color: var(--white);
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .submit-btn:hover {
+            background-color: #d48b15;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #1a1a1a;
+            color: #ccc;
+            padding: 50px 0 20px;
+            font-size: 0.9rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .copyright {
+            text-align: center;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+        }
+
+        /* --- RESPONSIVE MEDIA QUERIES --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            
+            .step-row {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .step-number {
+                margin: 0 auto 15px;
+            }
+
+            .step-content h3 {
+                justify-content: center;
+            }
+            
+            .contact-form { padding: 25px; }
+        }
+    </style>
 </head>
 <body>
 
+    <!-- Header / Navigation -->
     <header>
-        <nav>
-            <div class="logo">
-                <img src="logo.jpg" alt="Avenue Direct Marketing Logo">
+        <div class="container nav-wrapper">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-door-open"></i> Avenue Direct
+            </a>
+            
+            <!-- Dropdown Menu Wrapper -->
+            <div class="nav-dropdown-container">
+                <button class="menu-btn" id="menu-btn">
+                    Menu <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="nav-dropdown-menu" id="dropdown-menu">
+                    <a href="#benefits">Why Door Hangers</a>
+                    <a href="#process">Our Process</a>
+                    <a href="#proof">Results</a>
+                    <a href="#pricing">Pricing</a>
+                    <div class="cta-item">
+                        <a href="#contact">Get Consultation</a>
+                    </div>
+                </div>
             </div>
-            <ul>
-                <li><a href="#why">Why Door Hangers</a></li>
-                <li><a href="#how">How We Work</a></li>
-                <li><a href="#success">Success Stories</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
+        </div>
     </header>
 
-    <main>
-        <section id="hero">
-            <h1>Your Direct Path to Local Leads</h1>
-            <p>High-impact door hanger campaigns with GPS-verified delivery and custom QR code integration.</p>
-            <button type="button">Start Your Campaign</button>
-        </section>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content fade-in-up">
+            <h1>Get Your Business on Every Door</h1>
+            <p>The Coastal Bend's trusted choice for GPS-tracked door hanger campaigns. We design, print, and deliver results directly to your customer's hands.</p>
+            <a href="#contact" class="btn btn-primary">Start Your Campaign</a>
+        </div>
+    </section>
 
-        <section id="why">
-            <h2>Why Door Hangers?</h2>
+    <!-- Why Door Hangers Section -->
+    <section id="benefits" class="section-padding why-section">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <h2>Why Choose Door Hangers?</h2>
+                <p>In a world flooded with digital noise, door hangers cut through the clutter. They are tangible, targeted, and impossible to ignore.</p>
+            </div>
+
+            <div class="benefits-grid">
+                <!-- Benefit 1 -->
+                <div class="benefit-card fade-in-up">
+                    <div class="icon-box"><i class="fas fa-eye"></i></div>
+                    <h3>100% Visual Contact</h3>
+                    <p>Unlike an email that gets deleted unseen, a door hanger <strong>must be physically handled</strong> to be removed. This guarantees a 100% visual impression for your brand.</p>
+                </div>
+
+                <!-- Benefit 2 -->
+                <div class="benefit-card fade-in-up">
+                    <div class="icon-box"><i class="fas fa-bullseye"></i></div>
+                    <h3>Superior Response Rates</h3>
+                    <p>According to the <em>Direct Marketing Association (DMA)</em>, door-to-door marketing initiatives can achieve response rates as high as <strong>3-5%</strong>, compared to just 1% for standard direct mail.</p>
+                </div>
+
+                <!-- Benefit 3 -->
+                <div class="benefit-card fade-in-up">
+                    <div class="icon-box"><i class="fas fa-location-dot"></i></div>
+                    <h3>Hyper-Local Targeting</h3>
+                    <p>We cover <strong>Corpus Christi, Padre Island, Port Aransas, Aransas Pass, and Rockport</strong>. No wasted ad spend on people who live too far away to visit your business.</p>
+                </div>
+
+                <!-- Benefit 4 -->
+                <div class="benefit-card fade-in-up">
+                    <div class="icon-box"><i class="fas fa-sack-dollar"></i></div>
+                    <h3>Cost-Effective ROI</h3>
+                    <p>With lower production costs than direct mail (no postage required) and higher engagement, the Return on Ad Spend (ROAS) is significantly higher.</p>
+                </div>
+
+                <!-- Benefit 6: Competitive Advantage -->
+                <div class="benefit-card fade-in-up" style="border-bottom: 3px solid var(--accent); background: #fffcf5;">
+                    <div class="icon-box"><i class="fas fa-trophy"></i></div>
+                    <h3>Competitive Advantage</h3>
+                    <p><strong>95% of your competition</strong> is fighting for attention in crowded social feeds and spam folders. By being on the front door, you stand alone without the noise.</p>
+                </div>
+            </div>
+
+            <div class="stat-highlight fade-in-up">
+                <p><i class="fas fa-lightbulb"></i> <strong>Did You Know?</strong> According to the <em>Data & Marketing Association (DMA)</em>, tangible marketing materials are frequently kept in the home for days or weeks, meaning your door hanger is likely to be saved for later use.</p>
+            </div>
             
-            <article>
-                <h3>100% Viewability</h3>
-                <p>Every homeowner must physically handle your advertisement. Your message can't be deleted, scrolled past, or sent to a spam folder.</p>
-            </article>
+            <!-- Case Study Dropdown -->
+            <div class="case-study-wrapper fade-in-up" style="max-width: 800px; margin: 30px auto 0; text-align: center;">
+                <button id="case-study-toggle" class="btn btn-outline" style="color: var(--primary); border-color: var(--primary); font-size: 0.9rem; padding: 10px 25px;">
+                    View Real-World Success Data <i class="fas fa-chevron-down" style="margin-left: 8px;"></i>
+                </button>
+                
+                <div id="case-study-content" style="display: none; text-align: left; margin-top: 20px; background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #eee;">
+                    
+                    <!-- Case Study 1 -->
+                    <div style="margin-bottom: 25px; border-bottom: 1px solid #eee; padding-bottom: 20px;">
+                        <h4 style="margin-bottom: 10px; font-size: 1.1rem;">
+                            <a href="https://www.adzze.com/door-hanger-ads-roi/" target="_blank" style="color: var(--primary); text-decoration: none; display: flex; align-items: center; width: fit-content;">
+                                <i class="fas fa-pizza-slice" style="color: var(--accent); margin-right: 8px;"></i> 
+                                Local Pizzeria Campaign
+                                <i class="fas fa-external-link-alt" style="font-size: 0.8rem; margin-left: 10px; color: #999;"></i>
+                            </a>
+                        </h4>
+                        <p style="font-size: 0.95rem; margin-bottom: 8px; color: var(--dark);"><strong>Strategy:</strong> Distributed 5,000 door hangers with a 10% discount code to boost weekday walk-ins.</p>
+                        <ul style="font-size: 0.9rem; list-style: disc; margin-left: 20px; color: var(--text-gray);">
+                            <li><strong>Results:</strong> 8% response rate (400 redemptions), generating $8,000 in additional revenue.</li>
+                            <li><strong>ROI:</strong> 433% (after ~$1,500 campaign cost).</li>
+                        </ul>
+                    </div>
 
-            <article>
-                <h3>Zero Competition</h3>
-                <p>Unlike a mailbox full of junk or a crowded social media feed, your door hanger stands alone on the front door.</p>
-            </article>
+                    <!-- Case Study 2 -->
+                    <div style="margin-bottom: 25px; border-bottom: 1px solid #eee; padding-bottom: 20px;">
+                        <h4 style="margin-bottom: 10px; font-size: 1.1rem;">
+                            <a href="https://thinkflyers.com/blog/door-hanger-marketing-response-rate-benchmarks-factors-and-9-ways-to-improve-2025-data" target="_blank" style="color: var(--primary); text-decoration: none; display: flex; align-items: center; width: fit-content;">
+                                <i class="fas fa-temperature-low" style="color: var(--accent); margin-right: 8px;"></i> 
+                                HVAC Service Campaign
+                                <i class="fas fa-external-link-alt" style="font-size: 0.8rem; margin-left: 10px; color: #999;"></i>
+                            </a>
+                        </h4>
+                        <p style="font-size: 0.95rem; margin-bottom: 8px; color: var(--dark);"><strong>Strategy:</strong> Targeted homes built before 2000 with 10,000 hangers promoting a $79 A/C tune-up. Used QR codes and dedicated phone lines.</p>
+                        <ul style="font-size: 0.9rem; list-style: disc; margin-left: 20px; color: var(--text-gray);">
+                            <li><strong>Results:</strong> 4.5% overall response rate (initial calls + later redemptions).</li>
+                            <li><strong>Cost Per Acquisition:</strong> ~$67 (vs. $140 on Google Ads).</li>
+                        </ul>
+                    </div>
 
-            <article>
-                <h3>Hyper-Local Targeting</h3>
-                <p>We help you target the exact neighborhoods, zip codes, or street blocks that matter most to your business.</p>
-            </article>
-        </section>
+                    <!-- Case Study 3 -->
+                    <div style="margin-bottom: 0;">
+                        <h4 style="margin-bottom: 10px; font-size: 1.1rem;">
+                            <a href="https://thinkflyers.com/blog/door-hanger-marketing-response-rate-benchmarks-factors-and-9-ways-to-improve-2025-data" target="_blank" style="color: var(--primary); text-decoration: none; display: flex; align-items: center; width: fit-content;">
+                                <i class="fas fa-bug" style="color: var(--accent); margin-right: 8px;"></i> 
+                                Pest Control “Ant Blitz”
+                                <i class="fas fa-external-link-alt" style="font-size: 0.8rem; margin-left: 10px; color: #999;"></i>
+                            </a>
+                        </h4>
+                        <p style="font-size: 0.95rem; margin-bottom: 8px; color: var(--dark);"><strong>Strategy:</strong> Distributed 10,000 hangers offering a $59 ant treatment with a 90-day guarantee.</p>
+                        <ul style="font-size: 0.9rem; list-style: disc; margin-left: 20px; color: var(--text-gray);">
+                            <li><strong>Results:</strong> 3.1% response rate.</li>
+                            <li><strong>Upsells:</strong> 128 upsells to quarterly plans adding ~$19,000 in annual recurring revenue.</li>
+                        </ul>
+                    </div>
 
-        <section id="how">
-            <h2>How We Work</h2>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            <div class="step">
-                <span>1</span>
-                <h3>Custom QR Integration</h3>
-                <p>We place a custom QR code on your hangers that sends neighbors directly to your Website, Facebook, or Instagram page.</p>
+    <!-- What We Do / Process Section -->
+    <section id="process" class="section-padding process-section">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <h2>Our Process</h2>
+                <p>From idea to delivery, Avenue Direct Marketing handles everything. We specialize in creating high-converting door hangers that attract customers. Here's how it works:</p>
             </div>
 
-            <div class="step">
-                <span>2</span>
-                <h3>GPS-Verified Delivery</h3>
-                <p>Our teams distribute your hangers and provide a digital GPS map proving exactly where every single one was placed.</p>
+            <div class="process-steps">
+                <!-- Step 1 -->
+                <div class="step-row fade-in-up">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h3><i class="fas fa-comments step-icon"></i> Consult & Strategize</h3>
+                        <p>We start with a free consultation to craft an attractive promo tailored to your business – whether it's a discount, special offer, or event invite.</p>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="step-row fade-in-up">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h3><i class="fas fa-pencil-ruler step-icon"></i> Design for Conversion</h3>
+                        <p>Our experts design eye-catching door hangers using proven layouts, colors, and calls-to-action that grab attention and drive action.</p>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="step-row fade-in-up">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h3><i class="fas fa-print step-icon"></i> Print with Quality</h3>
+                        <p>We use high-quality, weather-resistant materials to ensure your hangers look professional and last until they're grabbed.</p>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="step-row fade-in-up">
+                    <div class="step-number">04</div>
+                    <div class="step-content">
+                        <h3><i class="fas fa-map-marked-alt step-icon"></i> Distribute Precisely</h3>
+                        <p>Our team hand-delivers to targeted homes. We provide real-time GPS tracking so you know exactly where we've been.</p>
+                    </div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="step-row fade-in-up">
+                    <div class="step-number">05</div>
+                    <div class="step-content">
+                        <h3><i class="fas fa-camera step-icon"></i> Verify & Optimize</h3>
+                        <p>After delivery, get photos of hangers in place for peace of mind. Plus, our free QR codes help track digital conversions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Proof / Testimonials Section -->
+    <section id="proof" class="section-padding proof-section">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <h2>Success Stories</h2>
+                <p>We've helped local service providers thrive with this approach. See what our Coastal Bend clients are saying.</p>
             </div>
 
-            <div class="step">
-                <span>3</span>
-                <h3>Instant Engagement</h3>
-                <p>Homeowners scan the code as soon as they see it, turning a physical visit into a digital lead immediately.</p>
+            <div class="testimonials-grid">
+                <div class="testimonial-card fade-in-up">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p>"I’ll be honest, I wasn't sure if door hangers would work for us, but we gave it a shot in Portland. We literally got calls the same day they went out. It’s been way more effective than the online ads we were running."</p>
+                    <div class="testimonial-author">
+                        <span>— Maria G., Sparkle Clean Coastal</span>
+                    </div>
+                </div>
+
+                <div class="testimonial-card fade-in-up">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p>"We struggle to reach seniors because they aren't always on social media. Avenue Direct helped us map out exactly where to focus. It’s been a huge help for families finding Alyda who really need us."</p>
+                    <div class="testimonial-author">
+                        <span>— Sarah L., Alyda Home Healthcare</span>
+                    </div>
+                </div>
+
+                <div class="testimonial-card fade-in-up">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p>"After the storm, we needed to move fast. I was really impressed with the GPS tracking—actually seeing the map of where the crew walked was a game changer. Phone's been ringing off the hook since."</p>
+                    <div class="testimonial-author">
+                        <span>— Mark S., Apex Roofing Solutions</span>
+                    </div>
+                </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="success">
-            <h2>Success Stories</h2>
+    <!-- Pricing Section -->
+    <section id="pricing" class="section-padding pricing-section">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <h2>Unbeatable Coastal Bend Pricing</h2>
+                <p>Transparent, all-inclusive rates for design, print, and GPS-tracked distribution. We offer the most competitive value in the region.</p>
+            </div>
 
-            <blockquote>
-                <p>"The GPS map gave me total confidence. I could see exactly which blocks were covered, and the QR code drove 40 new followers to our Instagram in one weekend."</p>
-                <footer>— Coastal Realty Group</footer>
-            </blockquote>
+            <div class="benefits-grid">
+                
+                <!-- Tier 1 -->
+                <div class="pricing-card fade-in-up">
+                    <div class="tier-name">Tier 1 - Starter</div>
+                    <div class="price-tag">55¢</div>
+                    <span class="price-per">per door ($550 total)</span>
+                    
+                    <ul class="pricing-features">
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <strong>1,000</strong> Door Campaign
+                                <div style="font-size: 0.85rem; color: var(--accent); font-weight: 700; margin-top: 2px;">Est. 10-50 New Customers</div>
+                            </div>
+                        </li>
+                        <li><i class="fas fa-paint-brush"></i> Professional Design Included</li>
+                        <li><i class="fas fa-print"></i> Printing & Distribution</li>
+                        <li><i class="fas fa-sticky-note"></i> Standard Door Hanger</li>
+                        <li><i class="fas fa-qrcode"></i> Free QR Code</li>
+                        <li><i class="fas fa-map-marked-alt"></i> GPS Tracking Results</li>
+                        <li><i class="fas fa-clock"></i> 2 Week Delivery</li>
+                    </ul>
+                    
+                    <a href="#contact" class="btn btn-outline" style="width: 100%; border-color: var(--primary); color: var(--primary);">Select Tier 1</a>
+                </div>
 
-            <blockquote>
-                <p>"Simple and effective. We didn't have to guess if the flyers were being delivered—the GPS proof and the spike in website traffic spoke for themselves."</p>
-                <footer>— South Texas Home Services</footer>
-            </blockquote>
-        </section>
+                <!-- Tier 2 -->
+                <div class="pricing-card popular fade-in-up">
+                    <div class="badge">Most Popular</div>
+                    <div class="tier-name">Tier 2 - Growth</div>
+                    <div class="price-tag">50¢</div>
+                    <span class="price-per">per door ($1,000 total)</span>
+                    
+                    <ul class="pricing-features">
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <strong>2,000</strong> Door Campaign
+                                <div style="font-size: 0.85rem; color: var(--accent); font-weight: 700; margin-top: 2px;">Est. 20-100 New Customers</div>
+                            </div>
+                        </li>
+                        <li><i class="fas fa-paint-brush"></i> Professional Design Included</li>
+                        <li><i class="fas fa-print"></i> Printing & Distribution</li>
+                        <li><i class="fas fa-layer-group"></i> Custom Size & Material Options</li>
+                        <li><i class="fas fa-qrcode"></i> Free QR Code</li>
+                        <li><i class="fas fa-map-marked-alt"></i> GPS Tracking Results</li>
+                        <li><i class="fas fa-clock"></i> 3 Week Delivery</li>
+                    </ul>
+                    
+                    <a href="#contact" class="btn btn-primary" style="width: 100%;">Select Tier 2</a>
+                </div>
 
-        <section id="contact">
-            <h2>Ready to Grow Your Business?</h2>
-            <p>Contact us today for a custom quote on your next neighborhood campaign.</p>
-            <a href="mailto:your-email@example.com">Email Us Directly</a>
-        </section>
-    </main>
+                <!-- Tier 3 -->
+                <div class="pricing-card fade-in-up">
+                    <div class="tier-name">Tier 3 - Volume</div>
+                    <div class="price-tag">47¢</div>
+                    <span class="price-per">per door ($1,880 total)</span>
+                    
+                    <ul class="pricing-features">
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <strong>4,000</strong> Door Campaign
+                                <div style="font-size: 0.85rem; color: var(--accent); font-weight: 700; margin-top: 2px;">Est. 40-200 New Customers</div>
+                            </div>
+                        </li>
+                        <li><i class="fas fa-paint-brush"></i> Professional Design Included</li>
+                        <li><i class="fas fa-print"></i> Printing & Distribution</li>
+                        <li><i class="fas fa-layer-group"></i> Custom Size & Material Options</li>
+                        <li><i class="fas fa-qrcode"></i> Free QR Code</li>
+                        <li><i class="fas fa-map-marked-alt"></i> GPS Tracking Results</li>
+                        <li><i class="fas fa-clock"></i> 4 Week Delivery</li>
+                    </ul>
+                    
+                    <a href="#contact" class="btn btn-outline" style="width: 100%; border-color: var(--primary); color: var(--primary);">Select Tier 3</a>
+                </div>
 
+                <!-- Tier 4 - Enterprise -->
+                <div class="pricing-card fade-in-up">
+                    <div class="tier-name">Tier 4 - Enterprise</div>
+                    <div class="price-tag" style="font-size: 2.2rem;">Request Pricing</div>
+                    <span class="price-per">for 5,000+ doors</span>
+                    
+                    <ul class="pricing-features">
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <strong>5,000+</strong> Door Campaign
+                                <div style="font-size: 0.85rem; color: var(--accent); font-weight: 700; margin-top: 2px;">High Volume Impact</div>
+                            </div>
+                        </li>
+                        <li><i class="fas fa-star"></i> <strong>All Perks Included</strong></li>
+                        <li><i class="fas fa-gem"></i> Priority Design & Support</li>
+                        <li><i class="fas fa-layer-group"></i> Custom Size & Material Options</li>
+                        <li><i class="fas fa-map-marked-alt"></i> GPS Tracking Results</li>
+                        <li><i class="fas fa-calendar-alt"></i> Flexible Delivery Schedule</li>
+                    </ul>
+                    
+                    <a href="#contact" class="btn btn-outline" style="width: 100%; border-color: var(--primary); color: var(--primary);">Contact Us</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Money Back Guarantee Section -->
+    <section class="section-padding" style="background-color: #fffcf5; border-top: 1px solid #e0e0e0; border-bottom: 1px solid #e0e0e0;">
+        <div class="container text-center fade-in-up">
+            <i class="fas fa-shield-alt" style="font-size: 3.5rem; color: var(--accent); margin-bottom: 20px;"></i>
+            <h2 style="font-size: 2rem; margin-bottom: 15px; color: var(--primary);">100% Money Back Guarantee</h2>
+            <p style="max-width: 700px; margin: 0 auto 25px; font-size: 1.1rem; color: var(--text-gray);">
+                We are so confident in our GPS-tracked distribution that we offer a full refund if we don't deliver as promised. 
+                Your investment is safe, secure, and fully <strong>backed by Square</strong>.
+            </p>
+            <div style="display: flex; justify-content: center; align-items: center; gap: 15px; margin-top: 20px;">
+                <span style="font-weight: 600; color: #555;">Processed securely by</span>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Square_Inc_logo.svg/1280px-Square_Inc_logo.svg.png" alt="Square Logo" style="height: 35px; vertical-align: middle;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-padding contact-section">
+        <div class="container">
+            <div class="contact-container">
+                <div class="contact-info fade-in-up">
+                    <h2>Ready to see the difference?</h2>
+                    <p>Contact us today for a free promo consultation. Let's design a campaign that actually brings people to your door.</p>
+                    
+                    <ul>
+                        <li><i class="fas fa-phone-alt"></i> (361) 555-0199</li>
+                        <li><i class="fas fa-envelope"></i> hello@avenuedirect.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Corpus Christi, TX</li>
+                    </ul>
+
+                    <!-- Embed Map of Corpus Christi Area -->
+                    <iframe class="map-frame" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d220455.578614488!2d-97.46973950482592!3d27.712165039474775!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86685f806192d5b3%3A0xeed2791444d324cb!2sCorpus%20Christi%2C%20TX!5e0!3m2!1sen!2sus!4v1703649000000!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+
+                <div class="contact-form-wrapper fade-in-up">
+                    <!-- Success/Error Message Container (Hidden by default) -->
+                    <div id="success-message" style="display:none; text-align:center; padding: 40px; background: white; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+                        <i id="msg-icon" class="fas fa-check-circle" style="font-size: 4rem; color: var(--accent); margin-bottom: 20px;"></i>
+                        <h3 id="msg-title" style="color: var(--primary); margin-bottom: 15px; font-size: 1.8rem;">Message Sent!</h3>
+                        <p id="msg-text" style="font-size: 1.2rem; color: var(--text-gray);">Thanks for contacting Avenue Direct. We will reach out within 24 hours.</p>
+                        <button id="msg-close" style="display:none; margin-top: 20px; padding: 10px 20px; border-radius: 5px; border: 1px solid #ccc; background: #eee; cursor: pointer;">Try Again</button>
+                    </div>
+
+                    <form class="contact-form" id="contact-form">
+                        <h3 style="color: var(--primary); margin-bottom: 20px;">Start Your Campaign</h3>
+                        
+                        <!-- Hidden timestamp field -->
+                        <input type="hidden" name="time" id="time-input">
+
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" required placeholder="John Doe">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required placeholder="john@example.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="(361) 555-5555">
+                        </div>
+                        
+                         <div class="form-group">
+                            <label for="business">Business Name</label>
+                            <input type="text" id="business" name="business" placeholder="Your Business">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tier">What tier are you interested in?</label>
+                            <select id="tier" name="tier" required>
+                                <option value="" disabled selected>Select a Tier...</option>
+                                <option value="Tier 1">Tier 1 - Starter (1,000 Doors)</option>
+                                <option value="Tier 2">Tier 2 - Growth (2,000 Doors)</option>
+                                <option value="Tier 3">Tier 3 - Volume (4,000 Doors)</option>
+                                <option value="Tier 4">Tier 4 - Enterprise (5,000+ Doors)</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Launch My Campaign Now</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Avenue Direct Marketing. All rights reserved.</p>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Avenue Direct Marketing</h4>
+                    <p>The Coastal Bend's premier door hanger distribution service. Targeted, tracked, and effective.</p>
+                    <div class="social-links" style="margin-top: 20px;">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#benefits">Why Door Hangers</a></li>
+                        <li><a href="#process">How It Works</a></li>
+                        <li><a href="#proof">Testimonials</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Service Areas</h4>
+                    <ul class="footer-links">
+                        <li>Corpus Christi</li>
+                        <li>Port Aransas</li>
+                        <li>Portland</li>
+                        <li>Padre Island</li>
+                        <li>Rockport</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2024 Avenue Direct Marketing. All Rights Reserved. | <a href="#" style="color:#aaa">Privacy Policy</a></p>
+            </div>
+        </div>
     </footer>
 
+    <!-- JavaScript for Mobile Menu & Animations -->
+    <script>
+        // Dropdown Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const dropdownMenu = document.getElementById('dropdown-menu');
+        const menuIcon = menuBtn.querySelector('i');
+
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdownMenu.classList.toggle('active');
+            menuBtn.classList.toggle('active');
+            
+            // Toggle icon
+            if(dropdownMenu.classList.contains('active')){
+                menuIcon.classList.remove('fa-chevron-down');
+                menuIcon.classList.add('fa-chevron-up');
+            } else {
+                menuIcon.classList.remove('fa-chevron-up');
+                menuIcon.classList.add('fa-chevron-down');
+            }
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!menuBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                dropdownMenu.classList.remove('active');
+                menuBtn.classList.remove('active');
+                menuIcon.classList.remove('fa-chevron-up');
+                menuIcon.classList.add('fa-chevron-down');
+            }
+        });
+
+        // Close dropdown when clicking a link
+        dropdownMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                dropdownMenu.classList.remove('active');
+                menuBtn.classList.remove('active');
+                menuIcon.classList.remove('fa-chevron-up');
+                menuIcon.classList.add('fa-chevron-down');
+            });
+        });
+
+        // Scroll Animation Observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); // Only animate once
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-up').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Case Study Dropdown Logic
+        const csToggle = document.getElementById('case-study-toggle');
+        const csContent = document.getElementById('case-study-content');
+        const csIcon = csToggle.querySelector('i');
+
+        csToggle.addEventListener('click', () => {
+            if(csContent.style.display === 'none'){
+                csContent.style.display = 'block';
+                csIcon.classList.remove('fa-chevron-down');
+                csIcon.classList.add('fa-chevron-up');
+            } else {
+                csContent.style.display = 'none';
+                csIcon.classList.remove('fa-chevron-up');
+                csIcon.classList.add('fa-chevron-down');
+            }
+        });
+
+        // Sticky Header Effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.boxShadow = "0 5px 20px rgba(0,0,0,0.1)";
+            } else {
+                header.style.boxShadow = "0 2px 10px rgba(0,0,0,0.1)";
+            }
+        });
+
+        // EmailJS Form Submission Handler
+        window.addEventListener('load', function() {
+            // Set timestamp
+            const timeInput = document.getElementById('time-input');
+            if(timeInput) {
+                const now = new Date();
+                timeInput.value = now.toString();
+            }
+
+            const successDiv = document.getElementById('success-message');
+            const contactForm = document.getElementById('contact-form');
+            const msgIcon = document.getElementById('msg-icon');
+            const msgTitle = document.getElementById('msg-title');
+            const msgText = document.getElementById('msg-text');
+            const msgClose = document.getElementById('msg-close');
+
+            msgClose.addEventListener('click', function() {
+                successDiv.style.display = 'none';
+                contactForm.style.display = 'block';
+            });
+
+            contactForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                const btn = this.querySelector('button[type="submit"]');
+                const originalText = btn.innerText;
+                btn.innerText = 'Sending...';
+                btn.disabled = true;
+
+                // Mock Submission (Simulates a network request)
+                setTimeout(() => {
+                    // SUCCESS
+                    contactForm.style.display = 'none';
+                    successDiv.style.display = 'block';
+                    
+                    // Set success style
+                    msgIcon.className = "fas fa-check-circle";
+                    msgIcon.style.color = "var(--accent)";
+                    msgTitle.innerText = "Message Sent!";
+                    msgText.innerText = "Thanks for contacting Avenue Direct. We will reach out within 24 hours.";
+                    msgClose.style.display = 'none';
+                    
+                    // Reset form
+                    btn.innerText = originalText;
+                    btn.disabled = false;
+                    this.reset();
+                }, 1000); // 1 second delay
+            });
+        });
+    </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
